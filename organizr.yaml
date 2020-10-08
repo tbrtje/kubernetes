@@ -16,7 +16,7 @@ spec:
         workload.user.cattle.io/workloadselector: deployment-home-organizr
     spec:
       containers:
-      - image: linuxserver/organizr
+      - image: organizr/organizr
         imagePullPolicy: Always
         name: organizr
         ports:
