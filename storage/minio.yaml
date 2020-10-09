@@ -31,3 +31,17 @@ spec:
   storageClassName: manual
   volumeMode: Filesystem
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-data
+  namespace: minio
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 550Gi
+  storageClassName: manual
+  volumeMode: Filesystem
+  volumeName: big-storage
