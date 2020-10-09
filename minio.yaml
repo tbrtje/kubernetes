@@ -98,27 +98,27 @@ spec:
         - containerPort: 9000
         resources: {}
         volumeMounts:
-        - mountPath: /run/secrets/secret_key
-          name: secret_key
-        - mountPath: /run/secrets/access_key
-          name: access_key
+        - mountPath: /run/secrets/secret-key
+          name: secret-key
+        - mountPath: /run/secrets/access-key
+          name: access-key
         - mountPath: /export
           name: minio-data
       hostname: minio
       restartPolicy: Always
       volumes:
-      - name: secret_key
+      - name: secret-key
         secret:
           items:
-          - key: secret_key
-            path: secret_key
-          secretName: secret_key
-      - name: access_key
+          - key: secret-key
+            path: secret-key
+          secretName: secret-key
+      - name: access-key
         secret:
           items:
-          - key: access_key
-            path: access_key
-          secretName: access_key
+          - key: access-key
+            path: access-key
+          secretName: access-key
       - name: minio1-data
         persistentVolumeClaim:
           claimName: minio-data
