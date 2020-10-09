@@ -119,6 +119,6 @@ spec:
           - key: access-key
             path: access-key
           secretName: access-key
-      - name: minio1-data
+      - name: minio-data
         persistentVolumeClaim:
           claimName: minio-data
