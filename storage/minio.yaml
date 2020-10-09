@@ -53,6 +53,7 @@ metadata:
   labels:
     io.thies.service: minio
   name: minio
+  namespace: minio
 spec:
   ports:
   - name: "9000"
