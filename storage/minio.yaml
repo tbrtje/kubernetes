@@ -103,12 +103,12 @@ spec:
         - mountPath: /export
           name: minio-data
         env:
-          - name: ACCESS_KEY
+          - name: MINIO_ACCESS_KEY
             valueFrom:
               SecretKeyRef:
                 name: keys
                 key: access-key
-          - name: SECRET_KEY
+          - name: MINIO_SECRET_KEY
             valueFrom:
               SecretKeyRef:
                 name: keys
