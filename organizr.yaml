@@ -1,21 +1,3 @@
-apiVersion: longhorn.io/v1beta1
-kind: Volume
-metadata:
-  finalizers:
-  - longhorn.io
-  labels:
-    longhornvolume: organizr
-    manager: longhorn-manager
-  name: organizr
-  namespace: longhorn-system
-spec:
-  Standby: false
-  baseImage: ""
-  disableFrontend: false
-  engineImage: longhornio/longhorn-engine:v1.0.2
-  frontend: blockdev
-  nodeID: node2
-  numberOfReplicas: 2
 ---
 apiVersion: apps/v1
 kind: Deployment
