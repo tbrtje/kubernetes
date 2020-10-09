@@ -83,7 +83,7 @@ spec:
       containers:
       - args:
         - server
-        - http://minio/export
+        - /export
         image: minio/minio:RELEASE.2020-10-03T02-19-42Z
         imagePullPolicy: Always
         livenessProbe:
