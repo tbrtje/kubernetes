@@ -76,7 +76,7 @@ spec:
   template:
     metadata:
       labels:
-        io.thies.service: minio1
+        io.thies.service: minio
     spec:
       containers:
       - args:
