@@ -23,23 +23,6 @@ spec:
 apiVersion: getambassador.io/v2
 kind: Host
 metadata:
-  name: cloud.broetje.online
-  namespace: ambassador
-spec:
-  acmeProvider:
-    authority: none
-  ambassador_id:
-  - default
-  hostname: cloud.broetje.online
-  selector:
-    matchLabels:
-      hostname: cloud.broetje.online
-  tlsSecret:
-    name: ambassador-certs
----
-apiVersion: getambassador.io/v2
-kind: Host
-metadata:
   name: fritzbox.infra.broetje.online
   namespace: ambassador
 spec:
