@@ -113,13 +113,13 @@ spec:
           items:
           - key: secret-key
             path: secret-key
-          secretName: secret-key
+          secretName: keys
       - name: access-key
         secret:
           items:
           - key: access-key
             path: access-key
-          secretName: access-key
+          secretName: keys
       - name: minio-data
         persistentVolumeClaim:
           claimName: minio-data
