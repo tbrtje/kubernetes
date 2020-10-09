@@ -6,10 +6,6 @@ metadata:
 spec:
   acmeProvider:
     authority: none
-  ambassador_id:
-  - default
-  ambassadorId:
-  - default
   hostname: home.broetje.online
   selector:
     matchLabels:
