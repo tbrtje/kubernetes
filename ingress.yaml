@@ -9,7 +9,6 @@ spec:
     email: info@broetje-claussen.de
     privateKeySecret:
       name: https-3a-2f-2facme-2dv02.api.letsencrypt.org-2fdirectory--info-40broetje-2dclaussen.de
-    registration: '{"body":{"status":"valid","contact":["mailto:info@broetje-claussen.de"]},"uri":"https://acme-v02.api.letsencrypt.org/acme/acct/88134646"}'
   ambassador_id:
   - default
   ambassadorId:
