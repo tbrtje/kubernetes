@@ -105,12 +105,12 @@ spec:
         env:
           - name: MINIO_ACCESS_KEY
             valueFrom:
-              SecretKeyRef:
+              secretKeyRef:
                 name: keys
                 key: access-key
           - name: MINIO_SECRET_KEY
             valueFrom:
-              SecretKeyRef:
+              secretKeyRef:
                 name: keys
                 key: secret-key
       hostname: minio
