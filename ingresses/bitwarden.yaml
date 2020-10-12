@@ -1,0 +1,39 @@
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  labels:
+    io.thies.service: bitwarden
+  name: bw.broetje.online
+  namespace: ambassador
+spec:
+  acmeProvider:
+    authority: none
+  ambassador_id:
+  - default
+  hostname: bw.broetje.online
+  selector:
+    matchLabels:
+      hostname: bw.broetje.online
+  tlsSecret:
+    name: ambassador-certs
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  labels:
+    io.thies.service: bitwarden
+  name: bitwarden
+  namespace: ambassador
+spec:
+  add_response_headers:
+    Content-Security-Policy:
+      append: false
+      value: frame-ancestors  https://*.broetje.online;
+    Strict-Transport-Security: max-age=31536000;
+  connect_timeout_ms: 15000
+  host: bw.broetje.online
+  prefix: /
+  remove_response_headers:
+  - x-frame-options
+  service: bitwarden.bitwarden:80
+  timeout_ms: 15000
