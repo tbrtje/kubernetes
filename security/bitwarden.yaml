@@ -38,17 +38,17 @@ spec:
   storageClassName: longhorn-static
   volumeMode: Filesystem
 ---
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: bitwarden
-    namespace: bitwarden
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 800M
-    storageClassName: longhorn-static
-    volumeMode: Filesystem
-    volumeName: bitwarden
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bitwarden
+  namespace: bitwarden
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 800M
+  storageClassName: longhorn-static
+  volumeMode: Filesystem
+  volumeName: bitwarden
