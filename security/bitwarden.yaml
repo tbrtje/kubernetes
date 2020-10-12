@@ -81,6 +81,12 @@ spec:
       - image: bitwardenrs/server-mysql
         imagePullPolicy: Always
         name: bitwarden-rs
+        env:
+        - name: ADMIN_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: bitwarden
+            key: admin-token
         ports:
         - containerPort: 80
           hostPort: 80
