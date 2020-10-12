@@ -102,16 +102,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    labels:
-      io.thies.service: bitwarden
-    name: bitwarden
-    namespace: bitwarden
-  spec:
-    ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 80
-    selector:
-      io.thies.service: bitwarden
-    type: ClusterIP
+  labels:
+    io.thies.service: bitwarden
+  name: bitwarden
+  namespace: bitwarden
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    io.thies.service: bitwarden
+  type: ClusterIP
