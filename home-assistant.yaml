@@ -1,3 +1,58 @@
+apiVersion: longhorn.io/v1beta1
+kind: Volume
+metadata:
+  labels:
+    longhornvolume: home-assistant
+  name: home-assistant
+  namespace: longhorn-system
+spec:
+  engineImage: longhornio/longhorn-engine:v1.0.2
+  fromBackup: s3://longhorn@us-east1/backups?backup=backup-044da95bf5514adf&volume=pvc-c89c6feb-b14d-4bcc-aada-f152b9243b4b
+  frontend: blockdev
+  numberOfReplicas: 2
+  size: "5368709120"
+  staleReplicaTimeout: 20
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: home-assistant
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: home-assistant
+    namespace: home-assistant
+  csi:
+    driver: driver.longhorn.io
+    fsType: ext4
+    volumeAttributes:
+      numberOfReplicas: "2"
+      staleReplicaTimeout: "20"
+    volumeHandle: home-assistant
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: longhorn-static
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: longhorn-static
+  volumeMode: Filesystem
+  volumeName: home-assistant
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
