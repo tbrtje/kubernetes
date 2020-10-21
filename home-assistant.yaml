@@ -62,14 +62,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    workload.user.cattle.io/workloadselector: deployment-home-assistant-home-assistant
+    io.thies.service: home-assistant
   name: home-assistant
   namespace: home-assistant
 spec:
   replicas: 1
   selector:
     matchLabels:
-      workload.user.cattle.io/workloadselector: deployment-home-assistant-home-assistant
+      io.thies.service: home-assistant
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -78,7 +78,7 @@ spec:
   template:
     metadata:
       labels:
-        workload.user.cattle.io/workloadselector: deployment-home-assistant-home-assistant
+        io.thies.service: home-assistant
     spec:
       containers:
       - image: homeassistant/home-assistant
@@ -110,3 +110,20 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: home-assistant
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.thies.service: home-assistant
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  ports:
+  - name: http
+    port: 8123
+    protocol: TCP
+    targetPort: 8123
+  selector:
+    io.thies.service: home-assistant
+  type: ClusterIP
