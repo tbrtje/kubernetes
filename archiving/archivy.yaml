@@ -16,7 +16,7 @@ spec:
   engineImage: longhornio/longhorn-engine:v1.0.2
   frontend: blockdev
   numberOfReplicas: 2
-  size: "1024000000"
+  size: "10000000000"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -26,7 +26,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   capacity:
-    storage: 800M
+    storage: 10000M
   csi:
     driver: driver.longhorn.io
     fsType: ext4
@@ -50,7 +50,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 800M
+      storage: 10000M
   storageClassName: longhorn-static
   volumeMode: Filesystem
   volumeName: archivy
@@ -78,18 +78,12 @@ spec:
         io.thies.service: archivy
     spec:
       containers:
-      - image: bitwardenrs/server-mysql
+      - image: uzayg/archivy:untested-43bfb00a
         imagePullPolicy: Always
         name: archivy
-        env:
-        - name: ADMIN_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: bitwarden
-              key: admin-token
         ports:
-        - containerPort: 80
-          hostPort: 80
+        - containerPort: 5000
+          hostPort: 5000
           name: http
           protocol: TCP
         stdin: true
@@ -97,7 +91,7 @@ spec:
         terminationMessagePolicy: File
         tty: true
         volumeMounts:
-        - mountPath: /data
+        - mountPath: /archivy/data
           name: config
       restartPolicy: Always
       volumes:
@@ -115,9 +109,9 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 80
+    port: 5000
     protocol: TCP
-    targetPort: 80
+    targetPort: 5000
   selector:
     io.thies.service: archivy
   type: ClusterIP
