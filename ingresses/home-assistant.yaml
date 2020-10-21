@@ -1,0 +1,33 @@
+kind: Mapping
+metadata:
+  name: home-assistant
+  namespace: ambassador
+spec:
+  add_response_headers:
+    Content-Security-Policy:
+      append: false
+      value: frame-ancestors  https://*.broetje.online;
+    Strict-Transport-Security: max-age=31536000;
+  host: home.broetje.online
+  prefix: /
+  service: home-assistant.home-assistant:8123
+  use_websocket: true
+---
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: home.broetje.online
+  namespace: ambassador
+spec:
+  acmeProvider:
+    authority: none
+  ambassador_id:
+  - default
+  ambassadorId:
+  - default
+  hostname: home.broetje.online
+  selector:
+    matchLabels:
+      hostname: home.broetje.online
+  tlsSecret:
+    name: ambassador-certs
